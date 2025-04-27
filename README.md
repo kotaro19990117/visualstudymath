@@ -69,3 +69,28 @@ pip install streamlit altair pandas numpy plotly
 🚪 仮想環境から抜ける
 
 deactivate
+
+
+---
+
+## ☀️ バックグラウンドでStreamlitを起動する（本番用）
+
+通常のターミナル起動だとブラウザを閉じると止まってしまうので、  
+本番運用時は `nohup` を使ってバックグラウンド起動する！
+
+```bash
+nohup sudo ~/venv/bin/python3.12 -m streamlit run app.py --server.address=0.0.0.0 --server.port=80 &
+nohup ：ターミナルを閉じてもプロセスが生きる
+& ：バックグラウンドで動かす
+ログは自動で nohup.out に保存される
+📖 バックグラウンドプロセスの管理
+
+ログを見る
+cat nohup.out
+（リアルタイムログを見たいなら tail -f nohup.out）
+プロセスを止める方法
+Streamlitのプロセスを探す
+ps aux | grep streamlit
+プロセスID（PID）をkillする
+sudo kill プロセスID
+（例：sudo kill 5837）
